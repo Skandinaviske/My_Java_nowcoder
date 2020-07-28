@@ -1,5 +1,7 @@
 # My_Java_nowcoder
 Nowcode problems sloved by Java
+这基本上是我从去年（2019）12月开始刷的所有java题的题解，之前写leetcode都是用的Javascript，因为当时在SAP前端部门实习，没事干的时候就用Js刷题这样也当我在学前端lol。
+上传的目的主要是对自己的学习有一个记录并且激励自己以后更加努力地不间断地去刷题，去编程！
 
 谈谈感想：
 首先个人介绍一下，我本科毕业于一所中下游985高校，本科的专业是信息安全。研究生在加拿大上的Computer Science.
