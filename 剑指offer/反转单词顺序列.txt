@@ -1,0 +1,26 @@
+import java.util.Stack;
+public class Solution {
+    public String ReverseSentence(String str) {
+        if(str==null||str.trim().equals("")){
+            return str;
+        }
+        String[] newString = str.split(" ");
+        Stack<String> temStack= new Stack<String>();
+        for(String i : newString){
+            temStack.push(i);
+        }
+        String result = "";
+        int i = 0;
+        while(i<newString.length){
+            result = result+ temStack.pop()+" ";
+            //;
+            i++;
+        }
+//        int i = 0;
+//        while(i<str.length()){
+//            newString = str.charAt(i) + newString;
+//            i++;
+//        }
+        return result.substring(0,result.length()-1);
+    }
+}

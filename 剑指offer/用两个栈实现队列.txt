@@ -1,0 +1,22 @@
+import java.util.Stack;
+
+public class Solution {
+    Stack<Integer> stack1 = new Stack<Integer>();
+    Stack<Integer> stack2 = new Stack<Integer>();
+    
+    public void push(int node) {
+        stack1.push(node);
+    }
+    
+    public int pop() {
+        if(stack2.size()==0){
+            int deepofStack1 = stack1.size();
+            int i = 0;
+            while(i<deepofStack1){
+                stack2.push(stack1.pop());
+                i++;
+            }
+        }
+        return stack2.pop();
+    }
+}

@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<Integer> FindNumbersWithSum(int [] array,int sum) {
+        int p = 0;
+        int q = array.length-1;
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        //int temResult = 0;
+        while(p<q){
+            while(array[p]+array[q]<sum){
+                p++;
+            }
+            while(array[p]+array[q]>sum){
+                q--;
+            }
+            if(array[p]+array[q]==sum){
+                result.add(array[p]);
+                result.add(array[q]);
+                return  result;
+            }
+
+        }
+        return result;
+    }
+}

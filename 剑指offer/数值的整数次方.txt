@@ -1,0 +1,14 @@
+public class Solution {
+    public double Power(double base, int exponent) {
+        if(exponent==0)return 1;
+        if(exponent==1)return base;
+        if(exponent==-1) return 1/base;
+        if(exponent%2==0){
+            return Power(base,exponent/2)*Power(base,exponent/2);
+        }else
+        if(exponent>0){
+            return Power(base,exponent/2)*Power(base,exponent/2)*base;
+        }
+        else return Power(base,exponent/2)*Power(base,exponent/2)*(1/base);
+    }
+}

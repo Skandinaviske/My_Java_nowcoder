@@ -1,0 +1,34 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode reConstructBinaryTree(int [] pre,int [] in) {
+        TreeNode treeNode = reConstructBinaryTree(pre,0,pre.length-1,in,0,in.length-1);
+        return treeNode;
+    }
+
+    private TreeNode reConstructBinaryTree(int [] pre,int startPre,int endPre,int [] in,int startIn,int endIn) {
+
+        if(startPre>endPre||startIn>endIn)
+            return null;
+
+        TreeNode newTreeNode = new TreeNode(pre[startPre]);
+
+        int i = startIn;
+        while(i<=endPre) {
+            if(pre[startPre]==in[i]) {
+                newTreeNode.left = reConstructBinaryTree(pre, startPre + 1, startPre + i - startIn, in, startIn, i - 1);
+                newTreeNode.right = reConstructBinaryTree(pre,startPre + i - startIn+1,endPre,in,i+1,endIn);
+                break;
+            }
+            i++;
+        }
+        return newTreeNode;
+    }
+}

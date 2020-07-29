@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    ArrayList<ArrayList<Integer>> result= new ArrayList<>();
+    ArrayList<Integer> temArrayList = new ArrayList<>();
+
+    
+    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root,int target) {
+        findPath(root,target);
+        return result;
+    }
+    
+    public void findPath(TreeNode root, int target){
+        
+        if(root == null){
+            return;
+        }
+        
+        temArrayList.add(root.val);
+        
+        if(root.left==null&&root.right==null){
+            if(target == root.val){
+                result.add(new ArrayList(temArrayList));
+            } 
+        }
+
+        if(root.left!=null)
+        findPath(root.left, target - root.val );
+
+        if(root.right!=null)
+        findPath(root.right, target -root.val );
+
+        temArrayList.remove(temArrayList.size()-1);
+    }
+}

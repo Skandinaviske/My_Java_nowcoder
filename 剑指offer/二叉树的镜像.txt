@@ -1,0 +1,32 @@
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public void Mirror(TreeNode root) {
+        travese(root);
+    }
+    
+    public void travese(TreeNode root){
+        if(root==null)return;
+
+        TreeNode temTreeNode = root.left;
+        //travese(root.left);
+
+        root.left = root.right;
+
+        root.right = temTreeNode;
+        //travese(root.right);
+        travese(root.left);
+        travese(root.right);
+    }
+}

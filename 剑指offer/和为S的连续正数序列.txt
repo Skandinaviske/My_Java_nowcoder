@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
+        int slow = 1;
+        int fast = 2;
+        int stop = (sum+1)/2;
+        ArrayList<ArrayList<Integer>> result= new ArrayList<ArrayList<Integer>>();
+        if(sum<3){
+            return result;
+        }
+        while(slow<stop){
+            while(fastAddSlow(slow,fast)<sum){
+                fast++;
+            }
+            while(fastAddSlow(slow,fast)>sum&&slow<stop){
+                slow++;
+            }
+            if(fastAddSlow(slow,fast)==sum){
+                ArrayList<Integer> temResult = new ArrayList<Integer>();
+                int i = slow;
+                while(i<=fast){
+                    temResult.add(i);
+                    i++;
+                }
+                result.add(temResult);
+                fast++;
+            }
+        }
+//        if(result.size()!=0)
+//        result.remove(result.size()-1);
+        return result;
+    }
+
+    public static int fastAddSlow(int slow, int fast){
+        int i = slow;
+        int sum = 0;
+        while(i<=fast){
+            sum = sum + i;
+            i++;
+        }
+        return sum;
+    }
+
+   
+}

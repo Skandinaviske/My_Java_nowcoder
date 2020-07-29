@@ -1,0 +1,30 @@
+public class Solution {
+    public boolean Find(int target, int [][] array) {
+        int Row = array.length;
+        if (Row == 0) return false;
+        int Column = array[0].length;
+        if (Column == 0) return false;
+        if (array[0][0] > target) return false;
+        if (array[Row - 1][Column - 1] < target) return false;
+        int i = 0;
+        int j = Column - 1;
+        while (array[0][j] > target) {
+            j--;
+        }
+        while (array[i][j] < target) {
+            i++;
+        }
+        int temColumn = j;
+        //int temRow = i;
+        //j = 0;
+        while (i < Row) {
+            j = 0;
+            while (j <= temColumn) {
+                if (array[i][j] == target) return true;
+                j++;
+            }
+            i++;
+        }
+        return false;
+    }
+}

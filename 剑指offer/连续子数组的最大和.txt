@@ -1,0 +1,18 @@
+public class Solution {
+    public int FindGreatestSumOfSubArray(int[] array) {
+        int i = 0;
+        int temResult = 0;
+        int finalResult = 0x80000000;
+        while(i<array.length){
+            temResult = temResult + array[i];
+            if(temResult<array[i]){
+                temResult = array[i];
+            }
+            if(temResult>finalResult){
+                finalResult = temResult;
+            }
+            i++;
+        }
+        return  finalResult;
+    }
+}

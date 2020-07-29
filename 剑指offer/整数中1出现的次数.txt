@@ -1,0 +1,22 @@
+public class Solution {
+    public int NumberOf1Between1AndN_Solution(int n) {
+        int index = 1;
+        int sum = 0;
+        while(index<=n){
+            sum = sum + countSum(index);
+            index++;
+        }
+        return sum;
+    }
+
+    public static int countSum(int n){
+        int result = 0;
+        int temPosition = 0;
+        while(n!=0){
+             temPosition = n%10;
+             if(temPosition==1)result++;
+             n = n/10;
+        }
+        return result;
+    }
+}

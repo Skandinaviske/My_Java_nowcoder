@@ -1,0 +1,25 @@
+import java.util.*;
+public class Solution {
+    public int MoreThanHalfNum_Solution(int [] array) {
+        if(array.length==0)return 0;
+        if(array.length==1)return array[0];
+        Map newMap = new HashMap();
+        int i = 0 ;
+        int length = array.length;
+        while(i<length){
+            if(newMap.containsKey(array[i])){
+                //if()
+                System.out.println("Stay here");
+                int temNum = (int)newMap.get(array[i]);
+                temNum++;
+                System.out.println(temNum);
+                if(temNum>length/2)return array[i];
+                newMap.put(array[i],temNum);
+            }else{
+                newMap.put(array[i],1);
+            }
+            i++;
+        }
+        return 0;
+    }
+}

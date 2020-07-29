@@ -1,0 +1,49 @@
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public TreeNode Convert(TreeNode pRootOfTree) {
+        if(pRootOfTree==null)return null;
+        TreeNode curNode = new TreeNode(0);
+        TreeNode lastNode = traverseTree(pRootOfTree,curNode);
+        while(lastNode.left!=null){
+            lastNode =lastNode.left;
+        }
+        lastNode = lastNode.right;
+        lastNode.left = null;
+        return lastNode;
+    }
+
+    public TreeNode traverseTree(TreeNode node,TreeNode curNode){
+                if(node == null)return null;
+        if(node.left!=null)
+        curNode = traverseTree(node.left, curNode);
+        //System.out.println(curNode.val);
+        curNode = createList(node,curNode);
+        //System.out.println(curNode.val);
+        if(node.right!=null)
+        curNode = traverseTree(node.right, curNode);
+        //System.out.println(curNode.val);
+        //System.out.println("LastNodeVal = "+curNode.val);
+        return curNode;
+    }
+
+    public TreeNode createList(TreeNode node,TreeNode curNode){
+        //if(curNode == null)head = curNode;
+        curNode.right = node;
+        node.left = curNode;
+        curNode = curNode.right;
+        return curNode;
+    }
+
+}

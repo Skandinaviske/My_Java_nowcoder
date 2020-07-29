@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+public class Solution {
+    public int LastRemaining_Solution(int n, int m) {
+        if(n==0)return -1;
+        List<Integer> Ring = new ArrayList<Integer>();
+        //int[] Ring = new int[n];
+        int i = 0;
+        while(i<n){
+            Ring.add(i);
+            i++;
+        }
+        i = 0;
+        int tempM = m-1;
+        while(Ring.size()!=1){
+            i = i%Ring.size();
+            if(tempM==0){
+                System.out.println(Ring.get(i));
+                Ring.remove(i);
+                tempM = m-1;
+            }
+            i++;
+            tempM--;
+        }
+        return Ring.get(0);
+    }
+}

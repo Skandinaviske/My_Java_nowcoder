@@ -1,0 +1,46 @@
+/*
+public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}*/
+import java.util.Stack;
+public class Solution {
+    public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
+        if(pHead1==null||pHead2==null)
+            return null;
+        Stack stack1 = new Stack();
+        Stack stack2 = new Stack();
+        ListNode firp = pHead1;
+        ListNode secp = pHead2;
+        while(firp!=null){
+            stack1.push(firp);
+            firp = firp.next;
+        }
+
+        while(secp!=null){
+            stack2.push(secp);
+            secp = secp.next;
+        }
+
+        ListNode result = null;
+        while(true){
+            //result =
+            if(stack1.peek()!=stack2.peek()) {
+                //result = (ListNode)stack1.pop();
+                
+                return result;
+                
+            }
+        result=(ListNode)stack1.pop();
+        stack2.pop();
+        if(stack1.empty()||stack2.empty()){
+            break;
+        }
+        }
+        return result;
+    }
+}

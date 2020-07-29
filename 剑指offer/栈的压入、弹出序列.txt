@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+import java.util.Stack;
+public class Solution {
+    public boolean IsPopOrder(int [] pushA,int [] popA) {
+        if(pushA.length==0&&popA.length==0){
+            return true;
+        }
+        //boolean returnCharacter = false;
+        Stack<Integer> assistStack = new Stack<>();
+        int i = 0;
+        int j = 0;
+        while(i<popA.length){
+            //i = 0;
+            assistStack.push(pushA[i]);
+            while(!assistStack.isEmpty()&&popA[j]==assistStack.peek()){
+                assistStack.pop();
+                j++;
+            }
+            
+            i++;
+            //if()
+        }
+        return assistStack.empty();
+
+    }
+}

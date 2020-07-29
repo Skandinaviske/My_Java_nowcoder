@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+import java.util.Stack;
+/*
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        if(pRoot==null)return result;
+        Stack<TreeNode> Stack1 = new Stack<TreeNode>();
+        Stack<TreeNode> Stack2 = new Stack<TreeNode>();
+        int level = 1;
+        Stack2.push(pRoot);
+        while(Stack1.size()!=0||Stack2.size()!=0){
+            ArrayList<Integer> temIntegar = new ArrayList<Integer>();
+            if(level%2==1){
+                //ArrayList<Integer> temIntegar = new ArrayList<Integer>();
+                while(Stack2.size()!=0){
+                    TreeNode temTreeNode = Stack2.pop();
+                    if(temTreeNode.left!=null)Stack1.push(temTreeNode.left);
+                    if(temTreeNode.right!=null)Stack1.push(temTreeNode.right);
+                    temIntegar.add(temTreeNode.val);
+                }
+            }
+
+            if(level%2==0){
+                while(Stack1.size()!=0){
+                    TreeNode temTreeNode = Stack1.pop();
+                    if(temTreeNode.right!=null)Stack2.push(temTreeNode.right);
+                    if(temTreeNode.left!=null)Stack2.push(temTreeNode.left);
+                    temIntegar.add(temTreeNode.val);
+                }
+                //result.add(temIntegar);
+            }
+            result.add(temIntegar);
+            level++;
+        }
+        return result;
+    }
+
+}

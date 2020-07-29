@@ -1,0 +1,54 @@
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+        boolean result = false;
+
+        if(root1!=null&& root2!=null){
+            if(root1.val == root2.val){
+                result = Traverse(root1,root2);
+            }
+            if(result == false) {
+                result = HasSubtree(root1.left, root2);
+            }
+            if(result == false) {
+                result = HasSubtree(root1.right, root2);
+            }
+            //result = HasSubtree(root1.right,root2.right);
+        }
+        return result;
+    }
+
+    public boolean Traverse(TreeNode treeNode, TreeNode comparedTreeNode){
+
+        if(comparedTreeNode==null){
+            return true;
+        }
+
+        if(treeNode==null){
+            return false;
+        }
+
+        if(comparedTreeNode.val!=treeNode.val){
+            return false;
+        }
+
+
+        return Traverse(treeNode.left,comparedTreeNode.left)&&Traverse(treeNode.right,comparedTreeNode.right);
+        //if(treeNode.val == comparedTreeNode.val){
+        //return Traverse(treeNode.left,comparedTreeNode.left)&&Traverse(treeNode.right,comparedTreeNode.right);
+        //}
+
+    }
+}

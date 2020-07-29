@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+public class Solution {
+    public int[] multiply(int[] A) {
+        int[] B = new int[A.length];
+        if(A.length==1){
+            return B;
+        }
+        int[] C = new int[A.length-1];
+        int[] D = new int[A.length-1];
+        int i = 0;
+        int temp =1;
+        //C[0] = A[0];
+        //D[0] = A[1];
+        while(i<A.length-1){
+            temp = temp*A[i];
+            C[i] = temp;
+            //C[i] = C[i]*A[i];
+            //System.out.print("C["+i+"] =  "+C[i]+" ");
+            i++;
+        }
+        i--;
+//        System.out.println("i= "+i);
+//        System.out.println(C.length);
+//        System.out.println(D.length);
+        temp = 1;
+        while(i>=0){
+            temp = temp*A[i+1];
+            D[i] = temp;
+            i--;
+        }
+
+
+//        for(int t = 0;t<C.length;t++){
+//            System.out.print(C[t]+" ");
+//        }
+//        System.out.println("====================");
+//        for(int t = 0;t<D.length;t++){
+//            System.out.print(D[t]+" ");
+//        }
+        B[0] = D[0];
+        //System.out.print(D[0]+" =sasas");
+        i = 1;
+        while(i<D.length){
+            B[i] = D[i]*C[i-1];
+            i++;
+        }
+        B[i] = C[i-1];
+
+        i = 0;
+        while(i<B.length){
+            System.out.println(B[i]);
+            i++;
+        }
+        return B;
+    }
+}

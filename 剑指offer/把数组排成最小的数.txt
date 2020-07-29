@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+import java.util.*;
+public class Solution {
+    public String PrintMinNumber(int [] numbers) {
+        //if(numbers.length==0)return "";
+        StringBuffer result = new StringBuffer();
+        String[] strNumbers = new String[numbers.length];
+        for(int i = 0; i < numbers.length; i++) {
+            strNumbers[i] = String.valueOf(numbers[i]);
+        }
+        Arrays.sort(strNumbers, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return (o1+o2).compareTo(o2+o1);
+            }
+        });
+        int i = 0;
+        while(i<strNumbers.length){
+            result.append(strNumbers[i]);
+            i++;
+        }
+        return result.toString();
+    }
+}

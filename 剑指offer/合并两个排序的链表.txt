@@ -1,0 +1,39 @@
+/*
+public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}*/
+public class Solution {
+    public ListNode Merge(ListNode list1,ListNode list2) {
+        if(list1==null)return list2;
+        if(list2==null)return list1;
+        ListNode p = list1;
+        ListNode q = list2;
+        int i = 0;
+        int j = 0;
+        ListNode newStart = new ListNode(0);
+        ListNode r = newStart;
+        while(p!=null&&q!=null){
+            if(p.val<q.val){
+                r.next = p;
+                r = r.next;
+                p = p.next;
+            } else {
+                r.next = q;
+                r =r.next;
+                q = q.next;
+            }
+        }
+        if(p==null){
+            r.next = q;
+        }
+        if(q==null){
+            r.next = p;
+        }
+        return  newStart.next;
+    }
+}

@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<Integer> printMatrix(int [][] matrix) {
+        if(matrix.length==0)return null;
+        int i = 0;
+        //matrix = 0;
+        int j = 0;
+        int width = matrix.length;
+        int length = matrix[0].length;
+        int A[][] = new int[matrix.length][];
+
+        ArrayList<Integer> newArr= new ArrayList();
+        while(i<width){
+            j = 0;
+            int[] temArr = new int[length];
+            while(j<length){
+                temArr[j] = 0;
+                j++;
+            }
+            A[i] = temArr;
+            i++;
+        }
+
+        i = 0;
+        j = 0;
+        int fullnum = 0;
+        while(fullnum<width*length){
+            while(j<length&&A[i][j]==0){
+                A[i][j] = 1;
+                newArr.add(matrix[i][j]);
+                fullnum++;
+                System.out.println("i="+i+" j="+j+" "+matrix[i][j]);
+                j++;
+            }
+            j--;
+            i++;
+            while(i<width&&A[i][j]==0){
+                A[i][j] = 1;
+                newArr.add(matrix[i][j]);
+                fullnum++;
+                System.out.println("i="+i+" j="+j+" "+matrix[i][j]);
+                i++;
+            }
+            i--;
+            j--;
+            while(j>=0&&A[i][j]==0){
+                A[i][j] = 1;
+                newArr.add(matrix[i][j]);
+                fullnum++;
+                System.out.println("i="+i+" j="+j+" "+matrix[i][j]);
+                j--;
+            }
+            j++;
+            i--;
+            //System.out.println("i="+i+" j="+j);
+            while(i>=0&&A[i][j]==0){
+                A[i][j] = 1;
+                newArr.add(matrix[i][j]);
+                fullnum++;
+                System.out.println("i="+i+" j="+j+" "+matrix[i][j]);
+                i--;
+            }
+            i++;
+            j++;
+        }
+        return newArr;
+    }
+}

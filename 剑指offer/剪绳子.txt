@@ -1,0 +1,38 @@
+public class Solution {
+public int maxLength(int length){
+
+        if (length < 2)
+            return -1;
+        if (length == 2)
+            return 1;
+        if (length == 3)
+            return 2;
+
+        int[] F = new int[length + 1];
+        F[0] = 0;
+        F[1] = 1;
+        F[2] = 2;
+        F[3] = 3;
+        int i = 4;
+        int max = 0;
+        while(i<=length){
+            int j = 1;
+            int temR = 0;
+            while(j<=i/2){
+                temR = F[j]*F[i-j];
+                //System.out.println("F["+j+"]"+"F["+i+"-"+j+"]"+"="+temR);
+                if(temR>max)
+                    max = temR;
+                j++;
+            }
+            F[i] = max;
+            i++;
+        }
+
+        return F[length];
+    }
+
+    public  int cutRope(int target) {
+        return  maxLength(target);
+    }
+}

@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+public class Solution {
+    public int GetUglyNumber_Solution(int index) {
+        
+		if(index <= 0){
+			return 0;
+		}
+        ArrayList<Integer> Arr = new ArrayList<Integer>();
+        Arr.add(1);
+        int M2=0,M3=0,M5=0;
+        int indexofM2 = 0,indexofM3 = 0,indexofM5 = 0;
+        int temMin = 0;
+        while(Arr.size()!=index){
+            M2 = 2*Arr.get(indexofM2);
+            M3 = 3*Arr.get(indexofM3);
+            M5 = 5*Arr.get(indexofM5);
+            temMin = Math.min(M2,Math.min(M3,M5));
+            Arr.add(temMin);
+            if(M2==temMin){
+                indexofM2++;
+            }
+            if(M3==temMin){
+                indexofM3++;
+            }
+            if(M5==temMin){
+                indexofM5++;
+            }
+        }
+        return Arr.get(index-1);
+    }
+}
