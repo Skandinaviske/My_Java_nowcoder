@@ -1,0 +1,19 @@
+public class Solution {
+    public int[] searchRange(int[] A, int target) {
+        int[] result = {-1,-1};
+        int i = 0, j = 0;
+        while(i<A.length&&A[i]<=target){
+            if(A[i]==target&&j==0)
+            {
+                result[0] = i;
+                j++;
+            }
+            if(A[i]==target&&j!=0){
+                result[1] = i;
+            }
+
+            i++;
+        }
+        return result;
+    }
+}

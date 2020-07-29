@@ -1,0 +1,11 @@
+public class Solution {
+    public int singleNumber(int[] A) {
+        int i = 1;
+        int result = A[0];
+        while(i<A.length){
+            result = result^A[i];
+            i++;
+        }
+        return result;
+    }
+}

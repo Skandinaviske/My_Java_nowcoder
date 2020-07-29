@@ -1,0 +1,24 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int run(TreeNode root) {
+        if(root==null)return 0;
+        return traverse(root);
+    }
+
+    public int traverse(TreeNode node){
+        if(node.left==null&&node.right==null)return 1;
+        if(node.left==null)
+            return 1+traverse(node.right);
+        if(node.right==null)
+            return 1+traverse(node.left);
+        return Math.min(1+traverse(node.left),1+traverse(node.right));
+    }
+}

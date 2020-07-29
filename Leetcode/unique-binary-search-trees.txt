@@ -1,0 +1,24 @@
+public class Solution {
+    public int numTrees(int n) {
+        if(n==0)
+            return 0;
+        if(n==1)
+            return 1;
+        int i = 2;
+        int C[] = new int[n+1];
+        C[0] = 1;
+        C[1] = 1;
+        while(i<=n){
+            int j = 0;
+            int tem = 0;
+            while (j<i){
+               tem = tem +C[j]*C[i - j-1];
+                j++;
+            }
+            C[i] = tem;
+            //System.out.println("C["+i+"]="+C[i]);
+            i++;
+        }
+        return C[n];
+    }
+}

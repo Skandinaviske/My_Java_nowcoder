@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+
+public class Solution {
+    public int climbStairs(int n) {
+        if(n==1)return 1;
+        if(n==2)return 2;
+        ArrayList<Integer> array = new ArrayList();
+        array.add(1);
+        array.add(2);
+        int i = 2;
+        while(i<n){
+            array.add(array.get(i-1)+array.get(i-2));
+            i++;
+        }
+        return array.get(n-1);
+    }
+}

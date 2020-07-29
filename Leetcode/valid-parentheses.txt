@@ -1,0 +1,49 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param s string字符串 
+     * @return bool布尔型
+     */
+    public boolean isValid (String s) {
+        // write code here
+        Stack<Character> stack = new Stack<Character>();
+        int i = 0;
+        while (i<s.length())
+        {
+            if(stack.empty()&&(s.charAt(i)==')'||s.charAt(i)==']'||s.charAt(i)=='}')){
+                return false;
+            }
+            if(s.charAt(i)=='('||s.charAt(i)=='['||s.charAt(i)=='{')
+                stack.push(s.charAt(i));
+            if(s.charAt(i)==')')
+            {
+                if(stack.peek()!='(')
+                    return false;
+                else
+                    stack.pop();
+            }
+            if(s.charAt(i)==']')
+            {
+                if(stack.peek()!='[')
+                    return false;
+                else
+                    stack.pop();
+            }
+            if(s.charAt(i)=='}')
+            {
+                if(stack.peek()!='{')
+                    return false;
+                else
+                    stack.pop();
+            }
+            i++;
+        }
+        if(!stack.empty())
+            return false;
+        else
+            return true;
+    }
+}

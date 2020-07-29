@@ -1,0 +1,28 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param A int整型一维数组 
+     * @param target int整型 
+     * @return int整型
+     */
+    public int searchInsert (int[] A, int target) {
+        if(A.length==0)
+            return 0;
+        int i = 0;
+        if(target>A[A.length-1])
+            return A.length;
+        while (i<A.length){
+            if(A[i]==target)
+                return i;
+            i++;
+        }
+        i = 0;
+        while(A[i]<target){
+            i++;
+        }
+        return i;
+    }
+}

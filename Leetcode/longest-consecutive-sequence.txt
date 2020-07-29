@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class Solution {
+    public int longestConsecutive(int[] num) {
+        if(num.length==0)return 0;
+        Map<Integer,Integer> map = new HashMap<Integer, Integer>();
+        for(int i: num)
+        {
+            map.put(i,1);
+        }
+
+        int result = 1;
+
+        for(int i: num)
+        {
+            int temResult = 0;
+            if(!map.containsKey(i))
+                continue;
+            int j = i+1;
+            while(map.containsKey(j))
+            {
+                map.remove(j);
+                temResult++;
+                //System.out.println(j);
+                j++;
+            }
+            while(map.containsKey(i))
+            {
+                map.remove(i);
+                temResult++;
+                //System.out.println(i);
+                i--;
+            }
+            result = Math.max(result,temResult);
+
+            //System.out.println("Happy");
+        }
+        return result;
+    }
+}

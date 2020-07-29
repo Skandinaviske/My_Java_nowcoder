@@ -1,0 +1,35 @@
+public class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int i = 0;
+        int numofGasStation = gas.length;
+
+        while(i<numofGasStation) {
+            int j = i;
+            int ValueofOil = 0;
+
+
+            while (j != i-1) {
+                ValueofOil = ValueofOil + gas[j];
+                ValueofOil = ValueofOil - cost[j];
+                if (ValueofOil < 0) break;
+                j++;
+                if(j==numofGasStation)
+                {
+                    if(i==0){
+                        return i;
+                    }
+                    j = 0;
+                }
+            }
+            if(j == i-1){
+                ValueofOil = ValueofOil + gas[j];
+                ValueofOil = ValueofOil - cost[j];
+                if(ValueofOil>=0)
+                    return i;
+            }
+            i++;
+        }
+        return -1;
+
+    }
+}

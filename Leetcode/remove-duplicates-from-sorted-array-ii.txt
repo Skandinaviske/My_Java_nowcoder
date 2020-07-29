@@ -1,0 +1,42 @@
+public class Solution {
+    public int removeDuplicates(int[] A) {
+        if(A.length==0)return 0;
+        int flag = 0;
+        int i = 0;
+        int tem = Integer.MIN_VALUE;
+        int minius = 0;
+        while(i<A.length-minius){
+            if(A[i]==tem)
+            {
+                flag++;
+                if(flag>2){
+                    removeElement(A,i);
+                    minius++;
+                    continue;
+                }
+                else
+                {
+                    i++;
+                    continue;
+                }
+            }
+            tem = A[i];
+            flag = 1;
+            i++;
+        }
+        return A.length-minius;
+    }
+    
+        public static void removeElement(int[] A, int order)
+    {
+        int i = 0;
+        while (i<order)
+        {
+            i++;
+        }
+        while(i<A.length-1){
+            A[i] = A[i+1];
+            i++;
+        }
+    }
+}

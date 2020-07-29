@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class Solution {
+    public int firstMissingPositive(int[] A) {
+        Map<Integer,Integer> map = new HashMap<Integer, Integer>();
+        for(int i: A){
+            map.put(i,0);
+        }
+        int i = 1;
+        while(i<A.length+1){
+            if(!map.containsKey(i)){
+                break;
+            }
+            i++;
+        }
+        return i;
+    }
+}

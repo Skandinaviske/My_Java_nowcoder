@@ -1,0 +1,48 @@
+import java.util.*;
+
+/*
+ * public class ListNode {
+ *   int val;
+ *   ListNode next = null;
+ * }
+ */
+
+public class Solution {
+    /**
+     * 
+     * @param head ListNode类 
+     * @param n int整型 
+     * @return ListNode类
+     */
+    public ListNode removeNthFromEnd (ListNode head, int n) {
+        if(head==null)
+            return head;
+        if(head.next==null)
+            return null;
+        int length = 1;
+        //ListNode start = new ListNode();
+        //start.next = head;
+        ListNode p = head;
+        while (p.next!=null){
+
+            length++;
+            p = p.next;
+        }
+        n = length - n;
+
+        if(n == 0)
+            return head.next;
+        int i = 1;
+        p = head;
+        while(i<n){
+            i++;
+            p = p.next;
+        }
+        if(p.next.next!=null)
+        p.next = p.next.next;
+        else 
+            p.next = null;
+        return head;
+        // write code here
+    }
+}

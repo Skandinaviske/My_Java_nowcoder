@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class Solution {
+    
+    public int trap(int[] A) {
+        Stack<Integer> danDiaoStack = new Stack<Integer>();
+        int i = 0;
+        int result = 0;
+        while(i<A.length){
+            while(!danDiaoStack.isEmpty()&&A[danDiaoStack.peek()]<A[i]){
+                int TopofStack = danDiaoStack.pop();
+                if(danDiaoStack.isEmpty())break;
+                int width = i - danDiaoStack.peek()-1;
+                int temMin = Math.min(A[danDiaoStack.peek()],A[i]);
+                result = result + (temMin-A[TopofStack])*width;
+                //System.out.print("i= "+i+" " +result+" ");
+            }
+            danDiaoStack.push(i);
+            i++;
+        }
+        return result;
+    }
+}

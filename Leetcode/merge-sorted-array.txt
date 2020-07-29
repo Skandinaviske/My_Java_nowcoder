@@ -1,0 +1,35 @@
+public class Solution {
+    public void merge(int A[], int m, int B[], int n) {
+        int i = 0;
+        int j = 0;
+        int C[] = new int[A.length];
+        while(j<n&&i<m){
+            if(A[i]<B[j]){
+                C[i+j]= A[i];
+                i++;
+            }else{
+                C[i+j] = B[j];
+                j++;
+            }
+//            System.out.println("j=" +j);
+//            System.out.println("i=" +i);
+        }
+        if(i==m){
+            while(i+j<A.length){
+                C[i+j] = B[j];
+                j++;
+            }
+        }else{
+            while(i+j<A.length){
+                C[i+j] = A[i];
+                i++;
+            }
+        }
+        int index = 0;
+        while(index<A.length){
+            A[index] = C[index];
+            index++;
+        }
+
+    }
+}

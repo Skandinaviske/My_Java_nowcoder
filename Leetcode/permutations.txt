@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> permute(int[] num) {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        if(num.length==0)
+            return result;
+        if(num.length==1) {
+            ArrayList<Integer> temp = new ArrayList<Integer>();
+            temp.add(num[0]);
+            result.add(temp);
+            return result;
+        }
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        dfs(result , temp, num, new boolean[num.length]);
+        return result;
+    }
+
+    public void dfs(ArrayList<ArrayList<Integer>> res, ArrayList<Integer> temp, int[] nums, boolean[] used)
+    {
+        if(temp.size() == nums.length){
+            res.add(new ArrayList<>(temp));
+
+            //System.out.print("东南亚猴子");
+        }
+        int i = 0;
+
+        while(i<nums.length){
+            if(used[i]==false) {
+                //System.out.print("AA");
+                temp.add(nums[i]);
+                used[i] = true;
+                dfs(res,temp,nums,used);
+                used[i] = false;
+                temp.remove(temp.size() - 1);
+            }
+            i++;
+        }
+
+    }
+}

@@ -1,0 +1,23 @@
+public class Solution {
+    public int removeDuplicates(int[] A) {
+        //ArrayList<Integer> arr = new ArrayList<Integer>();
+        if(A.length==0)
+            return 0;
+        if(A.length==1)
+            return 1;
+        int i = 1;
+        int jnt = 0;
+        int cur = A[0];
+        while(i<A.length){
+            while(jnt<A.length&&A[jnt]==cur){
+                jnt++;
+            }
+            if(jnt ==A.length)
+                break;
+            A[i] = A[jnt];
+            cur = A[i];
+            i++;
+        }
+        return i;
+    }
+}

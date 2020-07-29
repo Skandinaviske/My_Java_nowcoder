@@ -1,0 +1,35 @@
+import java.util.*;
+
+/*
+ * public class ListNode {
+ *   int val;
+ *   ListNode next = null;
+ * }
+ */
+
+public class Solution {
+    /**
+     * 
+     * @param head ListNode类 
+     * @return ListNode类
+     */
+    public ListNode swapPairs (ListNode head) {
+        if(head == null)return head;
+        ListNode start = new ListNode(0);
+        start.next = head;
+        ListNode p = start;
+        ListNode q;
+        while (p.next!=null&&p.next.next != null){
+            q = p.next;
+            p.next = p.next.next;
+            if(q.next.next==null)
+                q.next = null;
+            else
+                q.next = q.next.next;
+            p.next.next = q;
+            p = p.next.next;
+            //p=p.next.next;
+        }
+        return start.next;
+    }
+}

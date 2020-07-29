@@ -1,0 +1,28 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param A int整型一维数组 
+     * @return int整型
+     */
+    public int singleNumber (int[] A) {
+        ArrayList<Long> B = new ArrayList<Long>();
+        for(int i : A){
+            B.add((long) i);
+        }
+        Set<Long> set = new HashSet<Long>();
+        long ori = 0;
+        for(long i : A){
+            set.add(i);
+            ori = ori + i;
+        }
+        long tem = 0;
+        for(long i : set){
+            tem = tem + i;
+        }
+        tem = tem*3;
+        return (int) ((tem - ori)/2);
+    }
+}

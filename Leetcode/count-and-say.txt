@@ -1,0 +1,50 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param n int整型 
+     * @return string字符串
+     */
+    public static String countAndSay (int n) {
+        int i = 2;
+        ArrayList<String> result = new ArrayList<String>();
+        result.add("1");
+        if(n==1)return "1";
+        result.add("11");
+        //if(n == 2)return "11";
+        while(i<n){
+            String form = result.get(result.size()-1);
+            String now = count(form);
+            //System.out.println(now);
+            result.add(now);
+            i++;
+        }
+        return result.get(result.size()-1);
+    }
+
+    public static String count (String string) {
+        String res="";
+        int i = 0;
+        int flag = 1;
+        //int form = 0;
+        while(i+1<string.length())
+        {
+            if(string.charAt(i+1)!=string.charAt(i)){
+                res = res + flag + string.charAt(i);
+                flag = 1;
+            }else{
+                flag++;
+            }
+            i++;
+        }
+
+        if(string.charAt(i)!=string.charAt(i-1)){
+            res = res + 1 + string.charAt(i);
+        }else{
+            res = res + flag + string.charAt(i);
+        }
+        return res;
+    }
+}

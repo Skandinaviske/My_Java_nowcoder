@@ -1,0 +1,33 @@
+public class Solution {
+    public void rotate(int[][] matrix) {
+        if(matrix.length==0)return;
+        int i = 0;
+        int j = 0;
+        int l = matrix.length;
+        while(i<l){
+            j = 0;
+            while(j<l - i){
+                int tem = matrix[i][j];
+                matrix[i][j] = matrix[l - j - 1][ l - i -1];
+                matrix[l - j - 1][ l - i -1] = tem;
+                j++;
+            }
+            i++;
+        }
+
+        i = 0;
+        while(i<l/2){
+            j = 0;
+            while(j<l){
+                int tem = matrix[i][j];
+                matrix[i][j] = matrix[l - i - 1][j];
+                matrix[l - i - 1][j] = tem;
+                j++;
+            }
+            i++;
+        }
+
+        //return
+
+    }
+}

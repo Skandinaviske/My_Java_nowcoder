@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<String> stack = new Stack<String>();
+        int i = 0;
+        while(i<tokens.length){
+            if(judgeString(tokens[i])&&stack.size()>=2)
+            {
+                int temNum = 0;
+                int num1 = Integer.parseInt(stack.pop());
+                int num2 = Integer.parseInt(stack.pop());
+                if(tokens[i].equals("+"))
+                    temNum = num2 + num1;
+                else if(tokens[i].equals("-"))
+                    temNum = num2 - num1;
+                else if(tokens[i].equals("*"))
+                    temNum = num2 * num1;
+                else
+                    temNum = num2 / num1;
+                stack.push(String.valueOf(temNum));
+            } else
+            {
+                stack.push(tokens[i]);
+            }
+            //if(stack.size()==1)return Integer.parseInt(stack.pop());
+            i++;
+        }
+        return Integer.parseInt(stack.pop());
+    }
+    
+    public boolean judgeString(String string){
+        if(string.charAt(0)=='+'||string.charAt(0)=='*'||string.charAt(0)=='/')
+            return true;
+        else if(string.charAt(0)=='-'&&string.length()==1)
+            return true;
+        else
+            return false;
+    }
+}

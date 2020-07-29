@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class Solution {
+    public int minimumTotal(ArrayList<ArrayList<Integer>> triangle) {
+
+        int length = triangle.size();
+        if(length ==0)
+            return 0;
+        if(length==1)
+        {
+            ArrayList<Integer> temArrayList = triangle.get(0);
+            return temArrayList.get(0);
+        }
+        int i = length-1;
+        while(true){
+            ArrayList<Integer> preArrayList = triangle.get(i-1);
+            ArrayList<Integer> temArrayList = triangle.get(i);
+             int j = 0;
+            while(j<preArrayList.size()){
+                if(preArrayList.get(j)+temArrayList.get(j+1)<preArrayList.get(j)+temArrayList.get(j)){
+                    preArrayList.set(j,preArrayList.get(j)+temArrayList.get(j+1));
+                }else{
+                    preArrayList.set(j,preArrayList.get(j)+temArrayList.get(j));
+                }
+                j++;
+            }
+            i--;
+            if(i==0){
+                return preArrayList.get(0);
+            }
+        }
+    }
+}

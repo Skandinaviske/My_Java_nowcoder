@@ -1,0 +1,32 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param n int整型 
+     * @return string字符串ArrayList
+     */
+    public ArrayList<String> generateParenthesis (int n) {
+        ArrayList<String> result = new ArrayList<String>();
+        if(n==0)
+            return result;
+        String s = "";
+        helper(s,0,0,n,result);
+        return result;
+    }
+
+    public static void helper(String s,int left,int right,int n,ArrayList<String> result){
+        if(left==n&&right==n)
+        {
+            result.add(new String(s));
+            System.out.println(s);
+        }
+        if(left<n){
+            helper(s+"(",left+1,right,n,result);
+        }
+        if(left > right){
+            helper(s+")",left,right+1,n,result);
+        }
+    }
+}

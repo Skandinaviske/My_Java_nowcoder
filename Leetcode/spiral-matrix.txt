@@ -1,0 +1,63 @@
+import java.util.*;
+
+public class Solution {
+    public ArrayList<Integer> spiralOrder(int[][] matrix) {
+        ArrayList<Integer> arraylist = new ArrayList<Integer>();
+            if(matrix.length==0)
+            return arraylist;
+        traveseMatrix(matrix,0,0,arraylist);
+        return arraylist;
+    }
+    
+        public static void traveseMatrix(int[][] matrix, int i, int j, ArrayList<Integer> arrayList)
+        {
+        //if()
+        while(j< matrix[0].length&&matrix[i][j]!=Integer.MIN_VALUE) {
+            //System.out.println(matrix[i][j]);
+            arrayList.add(matrix[i][j]);
+            matrix[i][j] = Integer.MIN_VALUE;
+            j++;
+            }
+        j--;
+        if(i+1==matrix.length||matrix[i+1][j]==Integer.MIN_VALUE)
+            return;
+        else
+            i = i+1;
+        while(i<matrix.length&&matrix[i][j]!=Integer.MIN_VALUE) {
+            //System.out.println(matrix[i][j]);
+            arrayList.add(matrix[i][j]);
+            matrix[i][j] = Integer.MIN_VALUE;
+            i++;
+            }
+        i--;
+        if(j-1<0||matrix[i][j-1]==Integer.MIN_VALUE)
+            return;
+        else
+            j = j -1;
+        while (j>=0&&matrix[i][j]!=Integer.MIN_VALUE) {
+            //System.out.println(matrix[i][j]);
+            arrayList.add(matrix[i][j]);
+            matrix[i][j] = Integer.MIN_VALUE;
+            j--;
+            }
+        j++;
+        if(i-1<0||matrix[i-1][j]==Integer.MIN_VALUE)
+            return;
+        else
+            i = i-1;
+        while (i>=0&&matrix[i][j]!=Integer.MIN_VALUE) {
+            //System.out.println(matrix[i][j]);
+            arrayList.add(matrix[i][j]);
+            matrix[i][j] = Integer.MIN_VALUE;
+            i--;
+        }
+        i++;
+        if(matrix[i][j+1]==Integer.MIN_VALUE)
+            return;
+        else
+            j = j+1;
+
+        traveseMatrix(matrix,i,j,arrayList);
+        //arraylist.add();
+    }
+}

@@ -1,0 +1,38 @@
+public class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if(strs.length==0){
+            return "";
+        }
+        if(strs.length==1){
+            return strs[0];
+        }
+        int i = 0;
+        String result = strs[0];
+        while(i<strs.length - 1)
+        {
+            String tem = commonPrefix(strs[i], strs[i+1]);
+            if(tem.length()<result.length())
+            {
+                result = tem;
+            }
+            i++;
+        }
+        return  result;
+    }
+    
+    public String commonPrefix(String str1, String str2)
+    {
+        int i = 0;
+        String result = "";
+        while(i<str1.length()&&i<str2.length())
+        {
+            if(str1.charAt(i)==str2.charAt(i))
+            {
+                result = result + str1.charAt(i);
+            }else
+                break;
+            i++;
+        }
+        return result;
+    }
+}

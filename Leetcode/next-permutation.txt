@@ -1,0 +1,38 @@
+import java.util.*;
+
+public class Solution {
+    
+    //从够
+    public void nextPermutation(int[] num) {
+        if(num.length==0)
+            return;
+        int i = num.length-1;
+        int lognumber = Integer.MIN_VALUE;
+        while(i>=0&&num[i]>=lognumber){
+                lognumber = num[i];
+            i--;
+        }
+        if(i == -1){
+            Arrays.sort(num, 0,num.length);
+            return;
+        }
+        int switchNum1Ord = i;
+        int switchNum1Value = num[i];
+        i = num.length-1;
+        while(num[i]<=switchNum1Value){
+            i--;
+        }
+        int switchNum2Ord = i;
+        int switchNum2Value = num[i];
+
+        num[switchNum1Ord] = switchNum2Value;
+        num[switchNum2Ord] = switchNum1Value;
+        i = 0;
+        while (i<=switchNum1Ord){
+
+            i++;
+        }
+        Arrays.sort(num, i,num.length);
+
+    }
+}

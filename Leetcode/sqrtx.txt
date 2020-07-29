@@ -1,0 +1,19 @@
+public class Solution {
+    public int sqrt(int x)  {
+		int left =0;
+		int right = x/2+1;
+		long mid = 0;      //the long type prevent the overflow of int
+		while(left <= right){
+			mid = (left + right)/2;
+			//System.out.println(left+" "+ right+" "+mid);
+			if(mid * mid == x){  // if mid is int , here may be fault
+				return (int)mid;
+			}else if(mid * mid > x){
+				right = (int)mid-1;
+			}else{
+				left = (int)mid+1;
+			}
+		}
+		return right;
+    }
+}

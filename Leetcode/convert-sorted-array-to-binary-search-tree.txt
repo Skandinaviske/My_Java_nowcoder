@@ -1,0 +1,30 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode sortedArrayToBST(int[] num) {
+        if(num.length==0)return null;
+        TreeNode node = separateArraytoBST(num,  0,num.length-1);
+        return  node;
+    }
+    
+    public static TreeNode separateArraytoBST(int[] num, int start, int end){
+        if(start>end)return null;
+        if(start==end)
+            return new TreeNode(num[start]);
+        int mid = start+(end - start+1)/2;
+        //System.out.println("tem"+num[mid]);
+        TreeNode node = new TreeNode(num[mid]);
+        //System.out.println("Left:start"+start+" mid-1:"+(mid-1));
+        node.left = separateArraytoBST(num,start,mid - 1);
+        //System.out.println("Right:mid+1:"+(mid+1)+" end:"+end);
+        node.right = separateArraytoBST(num,mid+1,end);
+        return node;
+    }
+}

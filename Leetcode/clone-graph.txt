@@ -1,0 +1,64 @@
+/**
+ * Definition for undirected graph.
+ * class UndirectedGraphNode {
+ *     int label;
+ *     ArrayList<UndirectedGraphNode> neighbors;
+ *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
+ * };
+ */
+
+import java.util.*;
+
+public class Solution {
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        if(node==null)return null;
+        ArrayList<UndirectedGraphNode> traversedNode = new ArrayList<UndirectedGraphNode>();
+        Queue<UndirectedGraphNode> queue= new LinkedList<UndirectedGraphNode>();
+
+        Map<UndirectedGraphNode,UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
+        queue.offer(node);
+        UndirectedGraphNode temNode;
+
+        while(!queue.isEmpty())
+        {
+            temNode = queue.poll();
+            //System.out.print(temNode.label+" ");
+            traversedNode.add(temNode);
+            map.put(temNode,null);
+            ArrayList<UndirectedGraphNode> temArr = temNode.neighbors;
+            for(UndirectedGraphNode e : temArr){
+               if(!traversedNode.contains(e)&&!queue.contains(e)) {
+                   queue.offer(e);
+               }
+            }
+        }
+
+        Set set = map.keySet();
+
+        for(Iterator iter = set.iterator(); iter.hasNext();)
+        {
+            UndirectedGraphNode key = (UndirectedGraphNode)iter.next();
+                UndirectedGraphNode tempValue = new UndirectedGraphNode(key.label);
+                map.put(key,tempValue);
+        }
+
+//        for(Iterator iter = set.iterator(); iter.hasNext();)
+//         {
+//             UndirectedGraphNode key = (UndirectedGraphNode)iter.next();
+//             UndirectedGraphNode value = map.get(key);
+//             System.out.println(key.label+"===="+value.label);
+//        }
+        
+        for(Iterator iter = set.iterator(); iter.hasNext();)
+        {
+            UndirectedGraphNode key = (UndirectedGraphNode)iter.next();
+
+            UndirectedGraphNode tempValue = map.get(key);
+            for(UndirectedGraphNode e:key.neighbors)
+            {
+                tempValue.neighbors.add(map.get(e));
+            }
+        }
+        return map.get(node);
+    }
+}

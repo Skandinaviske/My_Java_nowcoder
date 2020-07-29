@@ -1,0 +1,60 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param S string字符串 
+     * @param T string字符串 
+     * @return string字符串
+     */
+    public String minWindow (String S, String T) {
+        int left = 0;
+        int right = 0;
+        Map<Character,Integer> map = new HashMap<Character, Integer>();
+        int i = 0;
+        int minLeft = 0;
+        int minRight = 0;
+        while (i<T.length()){
+            if(!map.containsKey(T.charAt(i))){
+                map.put(T.charAt(i),1);
+            }
+            else
+            map.put(T.charAt(i),map.get(T.charAt(i))+1);
+            i++;
+        }
+        int count = 0;
+        int min = Integer.MAX_VALUE;
+        while(right < S.length()){
+            char temp = S.charAt(right);
+            if(map.containsKey(temp)){
+                map.put(temp,map.get(temp)-1);
+                if(map.get(temp)>=0){
+                    count++;
+                }
+                //System.out.println("temp="+temp+" "+map.get(temp)+" count="+count);
+            }
+
+            while(count==T.length()){
+                //System.out.println("left="+ S.charAt(left)+" right="+S.charAt(right) );
+                if(right-left<min){
+                    minLeft = left;
+                    minRight = right;
+                    min = right -left;
+                }
+                if(map.containsKey(S.charAt(left)))
+                {
+                    map.put(S.charAt(left),map.get(S.charAt(left))+1);
+                    if(map.get(S.charAt(left))>0)
+                        count--;
+                }
+                left++;
+            }
+            //System.out.println("Out here? right="+right+" left="+left);
+
+            right++;
+        }
+        if(min==Integer.MAX_VALUE)return "";
+        return  S.substring(minLeft,minRight+1);
+    }
+}

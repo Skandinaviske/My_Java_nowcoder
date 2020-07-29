@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        HashMap<Integer, ArrayList<Integer>> newMap = new HashMap();
+        int i = 0, j = 0, k = 0;
+        int index = 0;
+        Arrays.sort(num);
+        while(i<num.length){
+            j = i+1;
+            while(j<num.length){
+                k = j+1;
+                while(k<num.length){
+                    if(num[i]+num[j]+num[k]==0){
+                        ArrayList<Integer> pushArray = new ArrayList<Integer>();
+                        //System.out.println(true);
+                        pushArray.add(num[i]);
+                        pushArray.add(num[j]);
+                        pushArray.add(num[k]);
+                        if(!newMap.containsValue(pushArray)){
+                            newMap.put(index,pushArray);
+                            index++;
+                            result.add(pushArray);
+                        }
+                    }
+
+                    k++;
+                }
+                j++;
+            }
+            i++;
+        }
+        return result;
+    }
+}

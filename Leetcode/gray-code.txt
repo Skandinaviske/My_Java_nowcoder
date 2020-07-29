@@ -1,0 +1,59 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param n int整型 
+     * @return int整型ArrayList
+     */
+    public ArrayList<Integer> grayCode (int n) {
+
+        if(n == 0){
+            ArrayList<Integer> result = new ArrayList<Integer>();
+            result.add(0);
+            return result;
+        }
+        
+        ArrayList<ArrayList<String>> sum = new ArrayList<>();
+        ArrayList<String> arr = new ArrayList<String>();
+        arr.add("0");
+        arr.add("1");
+        sum.add(arr);
+        int i = 1;
+        while(i<n){
+            ArrayList<String> form = sum.get(sum.size()-1);
+            ArrayList<String> nowArr = new ArrayList<String>();
+            for(String j : form){
+                nowArr.add("0"+j);
+            }
+
+            int j = form.size() - 1;
+            while(j>=0){
+                nowArr.add("1"+form.get(j));
+                j--;
+            }
+
+//            for(String s : nowArr){
+//                System.out.print(s+" ");
+//            }
+//            System.out.println();
+            sum.add(nowArr);
+            i++;
+        }
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for(String u : sum.get(n - 1)){
+            result.add(bitStringToInt(u));
+        }
+        return result;
+    }
+
+    public static int bitStringToInt(String  str) {
+        int result = 0, pow = 1;
+        for (int i = str.length() - 1; i >= 0; i--) {
+            result += ((str.charAt(i) - '0') * pow);
+            pow *= 2;
+        }
+        return result;
+    }
+}

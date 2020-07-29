@@ -1,0 +1,21 @@
+public class Solution {
+    public int jump(int[] A) {
+        int left = 0, right = 0;
+        int jumpTime = 0 ;
+        //int i = 0;
+        while(right<A.length-1){
+            //left = i + A[i];
+            int maxBound = right;
+            for(int i = left;i<=right ; i++){
+                maxBound = Math.max(maxBound,A[i]+i);
+            }
+            left = right +1;
+            right = maxBound;
+            //System.out.print("left="+left+","+"right="+right);
+            //System.out.println("");
+            jumpTime ++ ;
+        }
+        return jumpTime;
+        //B[]=max(B[i],B[i+1])
+    }
+}
