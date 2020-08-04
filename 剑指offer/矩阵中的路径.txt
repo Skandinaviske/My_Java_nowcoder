@@ -1,0 +1,70 @@
+public class Solution {
+    public boolean hasPath(char[] matrix, int rows, int cols, char[] str)
+        {
+
+        char[][] matrixTwoDimensional = new char[rows][cols];
+        int index = 0;
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; j < cols; j++) {
+                matrixTwoDimensional[i][j] = matrix[index];
+                index++;
+            }
+        }
+
+            for(int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    char[][] matrixCopy = new char[rows][cols];
+                    copyArr(matrixTwoDimensional,matrixCopy);
+
+                    if(DFS(i, j, matrixCopy, str, 0))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+    
+   public static void copyArr(char[][] sourceArr, char[][] destArr) {
+        for (int i = 0; i < sourceArr.length; i++) {
+            for (int j = 0; j < sourceArr[i].length; j++) {
+                destArr[i][j] = sourceArr[i][j];
+            }
+        }
+    }
+    
+    public static boolean DFS(int i, int j, char[][] matrix, char[] str, int index){
+
+        boolean flag = true;
+        if(index == str.length) {
+            //System.out.println("Succeed!!!!!!!!!!!1");
+            return true;
+        }
+        if(i<0||j<0||i==matrix.length||j==matrix[0].length||matrix[i][j]!=str[index])
+            return false;
+        //System.out.println(str[index]);
+        if(matrix[i][j]==str[index])
+        {
+//            for(int ii = 0; ii < matrix.length; ii++) {
+//                for (int jj = 0; jj < matrix[0].length; jj++) {
+//                    System.out.print(matrix[ii][jj]);
+//                }
+//                System.out.println();
+//            }
+//            System.out.println("============================================");
+
+            matrix[i][j] = '0';
+            flag = DFS(i+1,j,matrix,str,index+1)
+                   ||DFS(i-1,j,matrix,str,index+1)
+                   ||DFS(i,j+1,matrix,str,index+1)
+                   ||DFS(i,j-1,matrix,str,index+1);
+//            DFS(i+1,j,matrix,str,index+1);
+//            DFS(i-1,j,matrix,str,index+1);
+//            DFS(i,j+1,matrix,str,index+1);
+//            DFS(i,j-1,matrix,str,index+1);
+        }
+
+        return  flag;
+    }
+
+}

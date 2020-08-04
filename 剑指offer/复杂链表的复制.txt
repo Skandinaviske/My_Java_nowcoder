@@ -1,0 +1,64 @@
+/*
+public class RandomListNode {
+    int label;
+    RandomListNode next = null;
+    RandomListNode random = null;
+
+    RandomListNode(int label) {
+        this.label = label;
+    }
+}
+*/
+public class Solution {
+    public RandomListNode Clone(RandomListNode pHead)
+    {
+        if(pHead==null)
+            return null;
+        //int i = 0;
+        //Map<RandomListNode,RandomListNode> map = new HashMap<RandomListNode,RandomListNode>();
+        RandomListNode p = pHead;
+        //RandomListNode qHead = new RandomListNode(0);
+        //RandomListNode q = qHead;
+        while (p!=null){
+            RandomListNode temp = p.next;
+            p.next = new RandomListNode(p.label);
+            p.next.next = temp;
+            p = p.next.next;
+        }
+
+
+
+//        p = pHead;
+//
+//        while (p!=null){
+//            System.out.println(p.label+" ");
+//            p = p.next;
+//        }
+
+        p = pHead;
+
+        while(p!=null){
+            //RandomListNode temRandom = p.random;
+            if(p.random==null)
+                p.next.random = null;
+            else
+                p.next.random = p.random.next;
+            p = p.next.next;
+        }
+
+        p = pHead;
+
+        RandomListNode qHead = new RandomListNode(0);
+
+        RandomListNode q = qHead;
+
+        while (p!=null){
+            q.next = p.next;
+            q = q.next;
+            p.next = p.next.next;
+            p = p.next;
+        }
+
+        return  qHead.next;
+    }
+}

@@ -1,0 +1,7 @@
+    public int JumpFloorII(int target) {
+        int initNum =1;
+        for(int i = 0;i<target-1;i++){
+            initNum = initNum*2;
+        }
+        return initNum;
+    }
