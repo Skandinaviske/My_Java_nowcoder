@@ -1,0 +1,63 @@
+public class Solution {
+    public static int movingCount(int threshold, int rows, int cols)
+    {
+        int[][] arr = new int[rows][cols];
+        for(int i = 0; i<rows; i++){
+            for(int j = 0; j<cols; j++){
+                addup(arr,i,j);
+            }
+        }
+
+        for(int i = 0; i<rows; i++){
+            for(int j = 0; j<cols; j++){
+                if(arr[i][j]<=threshold){
+                    arr[i][j] = 1;
+                }else {
+                    arr[i][j] = 0;
+                }
+            }
+        }
+
+        boolean[][] visited = new boolean[rows][cols];
+
+        for(int i = 0; i<rows; i++){
+            for(int j = 0; j<cols; j++){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+
+        return DFS(arr,0,0,visited);
+    }
+    
+        public static void addup(int[][] arr, int i, int j){
+        int result = 0;
+        int currentRow = i;
+        int currentCol = j;
+        while(currentRow!=0){
+            result = result + currentRow%10;
+            currentRow = currentRow/10;
+        }
+
+        while(currentCol!=0){
+            result = result + currentCol%10;
+            currentCol = currentCol/10;
+        }
+        arr[i][j] = result;
+
+    }
+
+    public static int DFS(int[][] arr,int i,int j, boolean[][] visited){
+        if(i== arr.length||i<0||j==arr[0].length||j<0||visited[i][j]==true){
+            return 0;
+        }
+        if(arr[i][j]==0)
+            return 0;
+        visited[i][j] = true;
+        return arr[i][j]+DFS(arr,i+1,j,visited)+DFS(arr,i-1,j,visited)+DFS(arr,i,j+1,visited)+DFS(arr,i,j-1,visited);
+
+
+    }
+    
+    
+}

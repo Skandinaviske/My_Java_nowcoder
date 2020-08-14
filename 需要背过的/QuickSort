@@ -1,0 +1,24 @@
+    public static void quickSort(int[] A, int left, int right){
+        if(left>=right)
+            return;
+        int i = left;
+        int j = right;
+        int key=A[left];
+        while(i<j){
+            while(A[j]>=key&&i<j){
+                j--;
+            }
+            while(A[i]<=key&&i<j){
+                i++;
+            }
+            if(i<j){
+                int temp = A[i];
+                A[i] = A[j];
+                A[j] = temp;
+            }
+        }
+        A[left]=A[i];
+        A[i]=key;
+        quickSort(A,left,i - 1);
+        quickSort(A,i+1,right);
+    }

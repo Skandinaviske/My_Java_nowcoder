@@ -1,0 +1,31 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param num int整型一维数组 
+     * @param target int整型 
+     * @return int整型
+     */
+    public int threeSumClosest (int[] num, int target) {
+
+        int result = Integer.MAX_VALUE;
+        int gap = Integer.MAX_VALUE;
+        if(num.length==3)
+            return num[0]+num[1]+num[2];
+        for (int i = 0; i <num.length; i++)
+        {
+            for (int j = i+1; j < num.length;j++)
+            {
+                for(int k = j+1;k<num.length;k++){
+                    int temGap = Math.abs(num[i]+num[j]+num[k]-target);
+                    gap = Math.min(temGap,gap);
+                    if(gap == temGap)
+                        result = num[i]+num[j]+num[k];
+                }
+            }
+        }
+        return result;
+    }
+}
