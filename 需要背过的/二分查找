@@ -1,0 +1,14 @@
+//递归的二分查找
+
+ public static int binarySearch(int[] arr, int searchNum, int left, int right){
+        if(left>right)
+            return -9999;
+        int index = (left + right)/2;
+        //System.out.println("index = " + index);
+        if(arr[index] == searchNum)
+            return index;
+        if(searchNum > index)
+            return binarySearch(arr, searchNum, index+1, right);
+        else
+            return binarySearch(arr,searchNum,left,index-1);
+    }
