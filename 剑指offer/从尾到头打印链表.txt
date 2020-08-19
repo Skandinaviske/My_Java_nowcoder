@@ -29,3 +29,16 @@ public class Solution {
         return  result;
     }
 }
+
+
+//递归更好一些
+public class Solution {
+    public static void printLinkedlist(ListNode node){
+        if(node == null)
+            return;
+        printLinkedlist(node.next);
+        System.out.print(node.val+" ");
+    }
+}
+
+
