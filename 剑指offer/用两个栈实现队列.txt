@@ -20,3 +20,5 @@ public class Solution {
         return stack2.pop();
     }
 }
+
+//代码easy

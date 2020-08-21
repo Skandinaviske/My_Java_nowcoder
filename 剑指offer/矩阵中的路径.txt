@@ -66,5 +66,7 @@ public class Solution {
 
         return  flag;
     }
-
 }
+
+//复制一个数组；
+//遍历然后ＤＦＳ
