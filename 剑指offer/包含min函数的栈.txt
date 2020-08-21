@@ -32,3 +32,5 @@ public class Solution {
         return (int)aStack.peek();
     }
 }
+
+//添加一个辅助栈，用来存储当前min的值
