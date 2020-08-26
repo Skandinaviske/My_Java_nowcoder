@@ -1,0 +1,50 @@
+public class Cat {
+    private String sex;
+    private String name;
+    public Cat(String sex, String name)
+    {
+    //this.age = age;
+    this.sex = sex;
+    this.name = name;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 17 * result + sex.hashCode();
+        return result;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Cat)) {
+            // instanceof 已经处理了obj = null的情况
+            return false;
+        }
+        Cat catObj = (Cat) obj;
+        // 地址相等
+        if (this == catObj) {
+            return true;
+        }
+        // 如果两个对象姓名、年龄、性别相等，我们认为两个对象相等
+        if (catObj.name.equals(this.name) && catObj.sex.equals(this.sex)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+//重写equals时必须重写hashCode方法；
+
+class Main{
+    public static void main(String args[]){
+        Cat cat1 = new Cat("male","A");
+        Cat cat2 = new Cat("male","A");
+        System.out.println(cat1.hashCode());
+        System.out.println(cat2.hashCode());
+        System.out.println(cat1.equals(cat2));
+    }
+}
+
+
