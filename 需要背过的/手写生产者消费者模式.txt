@@ -1,0 +1,66 @@
+public class ProducterConsumer {
+
+    private static int sum = 10;
+    static int count = 0;
+    private static String LOCK = "lock";
+
+    class Producer implements Runnable{
+
+        @Override
+        public void run() {
+            for(int i = 0; i < 1000; i++){
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                synchronized (LOCK){
+                    while (count == sum){
+                        try {
+                            LOCK.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    count++;
+                    System.out.println(Thread.currentThread().getName()+" "+"生产了"+count+"个产品");
+                    LOCK.notifyAll();
+                }
+            }
+        }
+    }
+
+    class Consumer implements Runnable{
+
+        @Override
+        public void run() {
+            for(int i = 0; i < 1000; i++){
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                synchronized (LOCK){
+                    while (count == 0){
+                        try {
+                            LOCK.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    count--;
+                    System.out.println(Thread.currentThread().getName()+" "+"还剩"+count+"个产品");
+                    LOCK.notifyAll();
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        ProducterConsumer producterConsumer = new ProducterConsumer();
+        new Thread(producterConsumer.new Producer()).start();
+        new Thread(producterConsumer.new Consumer()).start();
+    }
+}

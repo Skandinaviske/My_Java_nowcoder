@@ -1,0 +1,42 @@
+    class TestTask extends AsyncTask<Void,Void,String>{
+
+        //在异步线程中执行
+        @Override
+        protected String doInBackground(Void... params) {
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+            String string = "123ABC";
+
+            //通知主线程当前进度,触发onProgessUpdate
+            publishProgress();
+            return string;
+        }
+
+        //当前切换到主线程，根据传递参数做UI更新
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            Toast.makeText(getApplicationContext(),"我被调用",Toast.LENGTH_LONG).show();
+            super.onProgressUpdate(values);
+        }
+
+
+
+        //主线程准备
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(getApplicationContext(),"Start thread!",Toast.LENGTH_LONG).show();
+        }
+
+        //切换到主线程
+        @Override
+        protected void onPostExecute(String s) {
+            btn.setText(s);
+        }
+    }
