@@ -1,0 +1,37 @@
+public class Father {
+    public int strong(){
+        return 9;
+    }
+}		
+
+public class Mother {
+    public int kind(){
+        return 8;
+    }
+}
+
+public class Son {
+
+    /**
+     * 内部类继承Father类
+     */
+    class Father_1 extends Father{  //继承一
+        public int strong(){
+            return super.strong() + 1;
+        }
+    }
+
+    class Mother_1 extends  Mother{  //继承二
+        public int kind(){
+            return super.kind() - 2;
+        }
+    }
+
+    public int getStrong(){
+        return new Father_1().strong();
+    }
+
+    public int getKind(){
+        return new Mother_1().kind();
+    }
+}
