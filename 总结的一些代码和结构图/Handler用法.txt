@@ -1,0 +1,55 @@
+    private Handler handler = new Handler(){
+        //接受消息，等待处理
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            //回到了主线程
+            switch (msg.what){
+                case 1:
+                    btn.setText("Loving you");
+                    break;
+                case 2:
+                    String str = (String) msg.obj;
+                    btn.setText(str);
+                    break;
+                case 3:
+                    if(progress<100){
+                        progress = progress +10;
+                        pb.setProgress(progress);
+                        handler.sendEmptyMessageDelayed(3,2000);
+                    }
+                    break;
+            }
+        }
+    };
+
+    public void btnOnClick(View view){
+        testTimer();
+//        new Thread(new Runnable(){
+//            @Override
+//            public void run(){
+//                //模拟网络请求
+////                try {
+////                    Thread.sleep(2000);
+////                } catch (InterruptedException e) {
+////                    e.printStackTrace();
+////                }
+////                handler.sendEmptyMessage(1);
+//
+//                //直接延时
+//                //handler.sendEmptyMessageDelayed(1,2000);
+//
+//                Message message = new Message();
+//                message.what = 2;
+//                message.obj = new String("liang");
+//                handler.sendMessage(message);
+//            }
+//        }).start();
+
+    }
+
+    public void testTimer(){
+        pb.setVisibility(View.VISIBLE);
+        handler.sendEmptyMessageDelayed(3,2*1000);
+
+    }

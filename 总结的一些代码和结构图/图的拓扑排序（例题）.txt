@@ -1,0 +1,65 @@
+有N个比赛队（1<=N<=500），编号依次为1，2，3，。。。。，N进行比赛，比赛结束后，裁判委员会要将所有参赛队伍从前往后依次排名，但现在裁判委员会不能直接获得每个队的比赛成绩，只知道每场比赛的结果，即P1赢P2，用P1，P2表示，排名时P1在P2之前。现在请你编程序确定排名。
+
+import java.util.*;
+
+public class Main{
+            public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNext()) {
+            int teamNum = scanner.nextInt();
+            int matchNum = scanner.nextInt();
+            int[][] array = new int[teamNum][teamNum];
+            int[][] arrayPair = new int[matchNum][2];
+
+            for (int i = 0; i < arrayPair.length; i++) {
+                int x = scanner.nextInt();
+                int y = scanner.nextInt();
+                array[x - 1][y - 1] = 1;
+            }
+
+//          for(int i = 0; i< array.length; i++) {
+//                for (int j = 0; j < array[0].length; j++) {
+//                    System.out.print(array[i][j] + " ");
+//                }
+//                System.out.println();
+//            }
+//
+//            System.out.println("========================");
+            boolean[] hasGone = new boolean[teamNum];
+
+            ArrayList<Integer> result = new ArrayList<>();
+            for (int index = 0; index< array.length; index++) {
+                int record = 0;
+                a: for (int j = 0; j < array.length; j++) {
+                    if (hasGone[j])
+                        continue;
+                    for (int i = 0; i < array.length; i++) {
+                        if (array[i][j] == 1) {
+                            break;
+                        }
+                        if (i == array.length - 1) {
+                            record = j;
+                            hasGone[record] = true;
+                            break a;
+                        }
+                    }
+                }
+                result.add(record+1);
+                for(int i = 0; i<array.length;i++){
+                    array[record][i] = 0;
+                }
+            }
+
+            int index = 0;
+            for(int i: result){
+                index ++;
+                System.out.print(i+" ");
+                if(index == teamNum){
+                    System.out.println();
+                    index = 0;
+                }
+            }
+        }
+    }
+}
