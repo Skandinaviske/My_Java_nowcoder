@@ -1,0 +1,53 @@
+例题：
+给出两个单词word1和word2，写一个函数计算出将word1 转换为word2的最少操作次数。
+问题：
+给出两个单词word1和word2，写一个函数计算出将word1 转换为word2的最少操作次数。
+你总共三种操作方法：
+1、插入一个字符
+2、删除一个字符
+3、替换一个字符
+
+动态规划方程式：edit(i, j) == min{ edit(i-1, j) + 1, edit(i, j-1) + 1, edit(i-1, j-1) + f(i, j) }
+
+
+
+
+
+    public static int minDistance (String a, String b) {
+        if(a.equals(b)){
+            return 0;
+        }
+        if(a.length()==0&&b.length()!=0){
+            return b.length();
+        }
+        if(a.length()!=0&&b.length()==0){
+            return a.length();
+        }
+        int[][] matrix = new int[a.length() + 1][b.length() + 1];
+        matrix[0][0] = 0;
+        for(int i = 1; i < matrix.length ; i ++){
+            matrix[i][0] = i;
+        }
+
+        for(int i = 1; i < matrix[0].length ; i ++ ){
+            matrix[0][i] = i;
+        }
+
+        for(int i = 1; i < matrix.length ; i++){
+            for(int j = 1; j < matrix[0].length ; j ++){
+                int Fx = 0;
+                if(a.charAt(i-1)!=b.charAt(j-1)){
+                    Fx = 1;
+                }
+                int getAddFx = matrix[i - 1][j - 1] + Fx;
+                matrix[i][j] = Math.min(Math.min(matrix[i - 1][j]+1,matrix[i][j - 1]+1),getAddFx);
+            }
+        }
+//        for(int i = 0; i < matrix.length ; i ++){
+//            for(int j = 0; j < matrix[0].length ;j++){
+//                System.out.print(matrix[i][j]+" ");
+//            }
+//            System.out.println();
+//        }
+        return matrix[a.length()][b.length()];
+    }
