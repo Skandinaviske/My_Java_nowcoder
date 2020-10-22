@@ -1,0 +1,38 @@
+class User implements Cloneable{
+    int age;
+    char sex;
+    String name;
+    User(int age, char sex, String name){
+        this.age = age;
+        this.sex = sex;
+        this.name = name;
+    }
+
+    public char getSex() {
+        return sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    //重写Object的clone方法（要implements Cloneable）
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+
+public class CloneClass {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        User user = new User(25,'F',"Cherry Wang");
+        System.out.println(user);
+        User p = (User) user.clone();
+        System.out.println(p);
+    }
+}
