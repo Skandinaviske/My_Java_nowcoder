@@ -1,0 +1,12 @@
+java.net.UnknownServiceException: CLEARTEXT communication to XXX not permitted by network security policy
+
+解决办法：
+ 
+
+（1）APP改用https请求
+
+（2）targetSdkVersion 降到27以下
+
+（3）在 application 元素中添加：
+
+android:usesCleartextTraffic=”true” 
