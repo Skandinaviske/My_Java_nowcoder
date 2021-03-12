@@ -1,0 +1,27 @@
+一般用法：
+
+//Kotlin完成
+val retrofit = Retrofit.Builder().
+                .client(OkHttpClient)
+                .baseUrl("...")
+                .addConverterFactory(GsonConverterFactory.create())
+                .callbackExecutor(Executors.newSingleThreadExecutor())
+                .build();
+val service = retrofit.create（ConnectService::class.java）
+
+val call: retrofit2.Call<ResponseBody>? = null
+call.enqueue(object : Callback{
+  override fun onResponse(call: Call, response: Response) {
+  val res = response.body!!.string()
+  runOnUiThread{
+    //修改UI
+  }
+  }
+})
+
+ConnectService如下：
+
+interface ConnectService{
+@GET("...")//请求后缀
+fun getText(): Call<ResponseBody>
+}
