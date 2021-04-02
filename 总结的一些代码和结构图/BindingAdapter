@@ -1,0 +1,34 @@
+BindingAdapter 
+用法：
+
+class BindingAdapter {
+    companion object {
+        @BindingAdapter("app:setWeather")
+        @JvmStatic
+        fun setWeather(weatherBg: WeatherBg, value: String?) {
+            when (value) {
+                "sunny" -> weatherBg.changeWeather("sunny")
+                "heavyRainy" -> weatherBg.changeWeather("heavyRainy")
+                "overcast" -> weatherBg.changeWeather("overcast")
+            }
+        }
+    }
+}
+
+然后在布局中引用
+
+        <com.rainy.weahter_bg_plug.WeatherBg
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:setWeather="@{viewModel.repositoryforNow[1]}"/>
+
+
+提示AAPT: xx: attribute xx not found.
+
+重点来了，如果在引用里边，不使用@{}，比如我使用
+
+ app:error="错误信息"
+
+就会报AAPT: error: attribute error (aka com.hzj.jetpackkotlin:error) not found.
+
+所以，如果使用BindingAdapter，就要结合@{}表达式使用
