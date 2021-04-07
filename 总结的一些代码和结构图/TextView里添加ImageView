@@ -1,0 +1,3 @@
+添加属性
+android:drawableRight="@mipmap/male_icon"
+android:drawablePadding="12dp"
