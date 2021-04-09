@@ -1,0 +1,7 @@
+在onBindViewHolder()改变一个ArrayList的背景颜色
+结果数据错乱
+最后使用：
+setHasStableIds(true)
+解决问题
+
+原因待查
