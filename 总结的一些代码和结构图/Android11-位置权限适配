@@ -1,0 +1,15 @@
+因为Android 11系统要求，ACCESS_BACKGROUND_LOCATION权限必须单独申请，并且在那之前，应用程序还必须已经获得了ACCESS_FINE_LOCATION或ACCESS_COARSE_LOCATION权限才行。
+
+解决：使用郭霖的PermissionX完成：
+
+        PermissionX.init(this)
+            .permissions(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+            .request { allGranted, grantedList, deniedList ->
+                if (allGranted) {
+                    Toast.makeText(this, "All permissions are granted", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show()
+                }
+            }
+            
+已写好，直接使用就行，点赞
