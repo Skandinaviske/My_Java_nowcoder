@@ -1,0 +1,4 @@
+invalidateOptionsMenu() -> onPrepareOptionsMenu()
+
+在需要动态更改menu的地方调用方法invalidateOptionsMenu()
+然后在onPrepareOptionsMenu里对Menu的项进行隐藏或更改
