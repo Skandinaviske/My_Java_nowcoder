@@ -1,0 +1,6 @@
+//直接置顶,瞬间回到顶部,没有滚动过程,其中Y值可以设置为大于0的值,使Scrollview停在指定位置。
+ScrollView.scrollTo(0,0);
+//类似于手动拖回顶部,有滚动过程
+ScrollView.fullScroll(View.FOCUS_UP);
+//类似于手动拖回顶部,有滚动过程,其中Y值可以设置为大于0的值,使Scrollview停在指定位置。
+ScrollView.smoothScrollTo(0, 0);
