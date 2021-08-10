@@ -1,0 +1,11 @@
+关于动画的一些使用总结：
+
+遇到问题：
+1.多次切换显示隐藏动画混乱：
+解决：做新动画前对类里AnimatorSet的对象判空并cancel；
+
+2.Preference里Disable后颜色改变：
+设置属性：app:shouldDisableView为false即可在disable后preference只不可点击而不会切换颜色
+
+3.Preference设置不可点击：
+setEnabled(false)
